@@ -1,0 +1,30 @@
+{%include 'media_header.html'%}
+<div id="layoutSidenav">
+        {% include 'media_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+                    	<h2>Payments</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Date</th>
+								<th>Ad Amount</th>
+								<th>Net Amount</th>
+								<th>Payment Type</th>
+							</tr>
+							{%for row in data['spacepay']%}
+							<tr>
+								<td>{{row['date']}}</td>
+								<td>{{row['ad_amount']}}</td>
+								<td>{{row['net_amount']}}</td>
+								<td>{{row['payment_type']}}</td>
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'media_footer.html'%}

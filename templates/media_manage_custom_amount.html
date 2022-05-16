@@ -1,0 +1,54 @@
+{%include 'media_header.html'%}
+<div id="layoutSidenav">
+        {% include 'media_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+						<h2>Manage Cost</h2>
+						{%if data['pays']%}
+						<table align="center" class="table">
+							<tr>
+								<th>Date</th>
+								<th>Ad Amount</th>
+								<th>Net Amount</th>
+								<th>Payment Type</th>
+							</tr>
+							{%for row in data['pays']%}
+							<tr>
+								<td>{{row['date']}}</td>
+								<td>{{row['ad_amount']}}</td>
+								<td>{{row['net_amount']}}</td>
+								<td>{{row['payment_type']}}</td>
+							</tr>
+								{%endfor%}
+						</table>
+						{%else%}
+
+							<form method="post">
+							<table align="center" class="table">
+								<tr>
+									<th>User Name</th>
+									<td><input type="text" value="{{data['users'][0]['NAME']}}" name="name"></td>
+								</tr>
+								
+								<tr>
+									<th>Ad Amount</th>
+									<td><input type="text" name="ad_amount"></td>
+								</tr>
+								<tr>
+									<th>Net Amount</th>
+									<td><input type="text" name="net_amount"></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center"><input class="btn btn-success" type="submit" name="amounts" ></td>
+								</tr>
+							</table>
+						</form>
+						{%endif%}
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'media_footer.html'%}

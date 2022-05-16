@@ -1,0 +1,46 @@
+{%include 'admin_header.html'%}
+<div id="layoutSidenav">
+        {% include 'admin_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+                    	<h2>Custom Requests</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Name</th>
+								<th>Date Requested</th>
+								<th>Description</th>
+								<th>Category</th>
+								<th>Content</th>
+								<th>Status</th>
+							</tr>
+							{%for row in data['crequest']%}
+							<tr>
+								<td>{{row['NAME']}}</td>
+								<td>{{row['date_requested']}}</td>
+								<td>{{row['request_description']}}</td>
+								<td>{{row['category_name']}}</td>
+								<td><img src="/{{row['file_path']}}" width="200px" height="200px"></td>
+								<td>{{row['request_status']}}</td>
+								{%if row['request_status']=='pending'%}
+								<td><a class="btn btn-success" href="?action=approvestat&id={{row['request_id']}}">Approve</a></td>
+								<td><a class="btn btn-danger" href="?action=rejectstat&id={{row['request_id']}}">Reject</a></td>
+								{%endif%}
+								<!-- {% if data['status'] %}
+								<td>{{data['status'][0]['request_status']}}</td>
+							
+								{%else%}
+								
+
+								<td><a class="btn btn-success" href="?action=checkstat&id={{row['request_id']}}">Check Status</a></td>
+								{%endif%} -->
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'admin_footer.html'%}

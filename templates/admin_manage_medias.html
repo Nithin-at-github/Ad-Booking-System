@@ -1,0 +1,123 @@
+{%include 'admin_header.html'%}
+<div id="layoutSidenav">
+        {% include 'admin_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+						{%if data['mediaupdate']%}
+						<form method="post">
+						<h2 align="center">Add Medias</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Category</th>
+								<td>
+									<select name="cat_ids"  class="form-control">
+										<option value="{{data['mediaupdate'][0]['category_id']}}">__select__</option>
+									{% for row in data['categories']%}
+										<option value="{{row['category_id']}}">{{row['category_name']}}</option>
+									{%endfor%}
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>Media Name</th>
+								<td><input type="text" name="mnames"  class="form-control" value="{{data['mediaupdate'][0]['media_name']}}" pattern="[A-Za-z]{1,25}" required="" placeholder="Enter Media Name"></td>
+							</tr>
+							<tr>
+								<th>Email</th>
+								<td><input type="email" readonly=""  class="form-control" name="emails" value="{{data['mediaupdate'][0]['email']}}" placeholder="Enter Email" required=""></td>
+							</tr>
+							<tr>
+								<th>Phone</th>
+								<td><input type="text" name="phones"  class="form-control" pattern="[0-9]{10}" value="{{data['mediaupdate'][0]['phone']}}" required="" placeholder="Enter Contact"></td>
+							</tr>
+							<tr>
+								<th>Description</th>
+								<td><input type="text" name="descs"  class="form-control" value="{{data['mediaupdate'][0]['description']}}" pattern="[A-Za-z ]{1,100}" required="" placeholder="Enter Description"></td>
+							</tr>
+							
+							<tr>
+								<td align="center" colspan="2"><input type="submit" name="addmeds" value="Add Media" class="btn btn-success"></td>
+							</tr>
+						</table>
+							
+						</form>
+
+
+
+
+						{%else%}
+						<form method="post">
+						<h2 align="center">Add Medias</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Category</th>
+								<td>
+									<select name="cat_id" class="form-control">
+										<option value="null">__select__</option>
+									{% for row in data['categories']%}
+										<option value="{{row['category_id']}}">{{row['category_name']}}</option>
+									{%endfor%}
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>Media Name</th>
+								<td><input type="text" class="form-control" name="mname" pattern="[A-Za-z]{1,25}" required="" placeholder="Enter Media Name"></td>
+							</tr>
+							<tr>
+								<th>Email</th>
+								<td><input type="email" class="form-control" name="email" placeholder="Enter Email" required=""></td>
+							</tr>
+							<tr>
+								<th>Phone</th>
+								<td><input type="text" class="form-control" name="phone" pattern="[0-9]{10}" required="" placeholder="Enter Contact"></td>
+							</tr>
+							<tr>
+								<th>Description</th>
+								<td><input type="text" class="form-control" name="desc" pattern="[A-Za-z ]{1,100}" required="" placeholder="Enter Description"></td>
+							</tr>
+							<tr>
+								<th>Password</th>
+								<td><input type="text" class="form-control" name="password" minlength="8" maxlength="12" required="" placeholder="Enter Password"></td>
+							</tr>
+							<tr>
+								<td align="center" colspan="2"><input type="submit" name="addmed" value="Add Media" class="btn btn-success"></td>
+							</tr>
+						</table>
+							
+						</form>
+						{%endif%}
+						<br>
+						<h2>Medias Available</h2>
+						<table align="center" class="table">
+						<tr>
+							<th>Sl.No</th>
+							<th>Media Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Description</th>
+							<th>Category Name</th>
+
+
+						</tr>
+						{%for row in data['medias']%}
+						<tr>
+							<td>{{loop.index}}</td>
+							<td>{{row['media_name']}}</td>
+							<td>{{row['email']}}</td>
+							<td>{{row['phone']}}</td>
+							<td>{{row['Description']}}</td>
+							<td>{{row['category_name']}}</td>
+							<td><a class="btn btn-danger" href="?action=delete&id={{row['media_id']}}">Delete</a></td>
+							<td><a class="btn btn-primary" href="?action=update&id={{row['media_id']}}">Update</a></td>
+						</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'admin_footer.html'%}

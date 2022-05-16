@@ -1,0 +1,44 @@
+{% include 'media_header.html' %}
+
+	<div id="layoutSidenav">
+        {% include 'media_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+                    	<br><br>
+                    	<div class="container">
+                        <div class="card" style="align-content: center;">
+                            <div class="card-header">
+                                <h3>Account Settings</h3>
+                            </div>
+                            <br>
+                            <h3 align="center">Change Password</h3>
+                            <form method="post">
+                            	<table width="50%">
+                            		<tr>
+                            			<th>Current Password</th>
+                            			<td><input type="Password" name="pass" class="form-control"></td>
+                            		</tr>
+                            		<tr>
+                            			<th>New Password</th>
+                            			<td><input type="Password" name="npass" class="form-control"></td>
+                            		</tr>
+                            		<tr>
+                            			<th>Confirm New Password</th>
+                            			<td><input type="Password" name="cpass" class="form-control"></td>
+                            		</tr>
+                            		<tr>
+                            			<td colspan="2" align="center"><br><input type="submit" name="reset" value="Reset" class="btn btn-success"></td>
+                            		</tr>
+                            	</table>
+                            </form>
+                        </div>
+                        </div>
+                    </center>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% include 'media_footer.html' %}

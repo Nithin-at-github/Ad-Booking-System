@@ -1,0 +1,30 @@
+{%include 'admin_header.html'%}
+<div id="layoutSidenav">
+        {% include 'admin_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+                    	<h2>Payments</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Name</th>
+								<th>Payment Type</th>
+								<th>Date</th>
+								<th>Amount Paid</th>
+							</tr>
+							{%for row in data['payments']%}
+							<tr>
+								<td>{{row['NAME']}}</td>
+								<td>{{row['payment_type']}}</td>
+								<td>{{row['date']}}</td>
+								<td>{{row['net_amount']}}</td>
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'admin_footer.html'%}

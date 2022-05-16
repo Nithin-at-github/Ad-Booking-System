@@ -1,0 +1,36 @@
+{%include 'media_header.html'%}
+<div id="layoutSidenav">
+        {% include 'media_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+                    	<h2>Customer Requests</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Name</th>
+								<th>Ad Type</th>
+								<th>Date</th>
+								<th>Content</th>
+							</tr>
+							{%for row in data['cmrreq']%}
+							<tr>
+								<td>{{row['NAME']}}</td>
+								<td>{{row['ad_type']}}</td>
+								<td>{{row['date']}}</td>
+								<td><img src="/{{row['file_path']}}" width="200px" height="100px"></td>
+								{% if row['stat']=='Approved' %}
+								<td><a class="btn btn-success" href="media_view_payments?ids={{row['ad_space_id']}}">Payments</a></td>	
+								{% else %}
+								<td><a class="btn btn-success" href="?ids={{row['ad_space_id']}}">Approve</a></td>
+								{% endif %}
+
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'media_footer.html'%}

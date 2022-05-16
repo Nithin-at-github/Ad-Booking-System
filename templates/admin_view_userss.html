@@ -1,0 +1,41 @@
+{%include 'admin_header.html'%}
+<div id="layoutSidenav">
+        {% include 'admin_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+						<h2 align="center">Users</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Sl.No</th>
+								<th>Name</th>
+								<th>Dob</th>
+								<th>Phone</th>
+								<th>Email</th>
+								<th>House Name</th>
+								<th>Place</th>
+								<th>District</th>
+								<th>Pincode</th>
+							</tr>
+						{%for row in data['users']%}
+
+							<tr>
+								<td>{{ loop.index }}</td>
+								<td>{{row['NAME']}}</td>
+								<td>{{row['dob']}}</td>
+								<td>{{row['phone']}}</td>
+								<td>{{row['email']}}</td>
+								<td>{{row['house_name']}}</td>
+								<td>{{row['place']}}</td>
+								<td>{{row['district']}}</td>
+								<td>{{row['pincode']}}</td>
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'admin_footer.html'%}

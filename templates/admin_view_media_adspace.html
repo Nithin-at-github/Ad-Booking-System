@@ -1,0 +1,38 @@
+{%include 'admin_header.html'%}
+<div id="layoutSidenav">
+        {% include 'admin_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+						<h3 align="center">Ad Spaces</h3>
+						<table align="center" class="table">
+							<tr>
+								<th>Media Name</th>
+								<th>Description</th>
+								<th>Amount</th>
+								<th>Status</th>
+							</tr>
+							{%for row in data['adspace']%}
+							<tr>
+								<td>{{row['media_name']}}</td>
+								<td>{{row['Description']}}</td>
+								<td>{{row['amount']}}</td>
+								<td>{{row['status']}}</td>
+								{%if row['status']=='pending'%}
+								<td>
+									<a href="?action=approve&id={{row['ad_space_id']}}" class="btn btn-primary">Approve</a>&emsp;
+									<a href="?action=reject&id={{row['ad_space_id']}}" class="btn btn-danger">Reject</a>
+								</td>
+								{%endif%}
+								<td><a class="btn btn-success" href="admin_view_customer_booking?id={{row['ad_space_id']}}">Customer Booking</a></td>
+								<!-- <td><a class="btn btn-success" href="admin_view_payments?id={{row['ad_space_id']}}">Payment Status</a></td> -->
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'admin_footer.html'%}

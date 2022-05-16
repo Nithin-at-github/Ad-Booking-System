@@ -1,0 +1,35 @@
+{%include 'media_header.html'%}
+<div id="layoutSidenav">
+        {% include 'media_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+                    	<h2>Custom Requests</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Date</th>
+								<th>Category</th>
+								<th>Request Description</th>
+								<th>Status</th>
+								<th>Content</th>
+							</tr>
+							{%for row in data['customreq']%}
+							<tr>
+							<td>{{row['date_requested']}}</td>
+							<td>{{row['category_name']}}</td>
+							<td>{{row['request_description']}}</td>
+							<td>{{row['request_status']}}</td>
+							<td><img src="/{{row['file_path']}}" width="200px" height="150px"></td>
+							
+
+							<td><a class="btn btn-success" href="media_manage_custom_amount?id={{row['request_id']}}">Manage Cost</a></td>
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'media_footer.html'%}

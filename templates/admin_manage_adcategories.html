@@ -1,0 +1,68 @@
+{%include 'admin_header.html'%}
+	<div id="layoutSidenav">
+        {% include 'admin_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+						{%if data['catupdate']%}
+						<form method="post">
+						<h2 align="center">Update Categories</h2>
+							<table align="center" class="table">
+								<tr>
+									<th>Category Name</th>
+									<td><input type="text" name="cat_names" class="form-control" value=" {{data['catupdate'][0]['category_name']}}"  required="" placeholder="Enter Category Name"></td>
+								</tr>
+								<tr>
+									<th>Category Description</th>
+									<td><input type="text" name="cat_descs"  class="form-control" value="{{ data['catupdate'][0]['description']}}" required="" placeholder="Enter Category Description"></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center"><input type="submit" name="updatecat" value="Update Category" class="btn btn-success"></td>
+								</tr>
+							</table>
+						</form>
+
+
+						{%else%}
+						<form method="post">
+						<h2 align="center">Add Categories</h2>
+							<table align="center" class="table">
+								<tr>
+									<th>Category Name</th>
+									<td><input type="text" name="cat_name"  class="form-control" pattern="[A-Za-z]{1,25}" required="" placeholder="Enter Category Name"></td>
+								</tr>
+								<tr>
+									<th>Category Description</th>
+									<td><input type="text" name="cat_desc"  class="form-control" pattern="[A-Za-z ]{1,100}" required="" placeholder="Enter Category Description"></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center"><input type="submit" name="addcat" value="Add Category" class="btn btn-success"></td>
+								</tr>
+							</table>
+						</form>
+						{%endif%}
+						<br>
+						<h2 align="center">Categories Available</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Sl.No</th>
+								<th>Category Name</th>
+								<th>Description</th>
+							</tr>
+							{%for row in data['categories']%}
+							<tr>
+								<td>{{loop.index}}</td>
+								<td>{{row['category_name']}}</td>
+								<td>{{row['description']}}</td>
+								<td><a class="btn btn-danger" href="?action=delete&id={{row['category_id']}}">Delete</a></td>
+								<td><a class="btn btn-primary" href="?action=update&id={{row['category_id']}}">Update</a></td>
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'admin_footer.html'%}

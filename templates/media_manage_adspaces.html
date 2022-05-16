@@ -1,0 +1,66 @@
+{%include 'media_header.html'%}
+<div id="layoutSidenav">
+        {% include 'media_sidebar.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <center>
+						{%if data['updateamnt']%}
+						<form method="post">
+							<h2>Manage Cost</h2>
+							<table align="center" class="table">
+								<tr>
+									<th>Amount</th>
+									<td><input type="text" value="{{data['updateamnt'][0]['amount']}}" name="amounts"></td>
+
+								</tr>
+								<tr>
+									<td colspan="2" align="center"><input type="submit" name="update" value="Update Amount" class="btn btn-success"></td>
+								</tr>
+							</table>
+						</form>
+
+						{%else%}
+						<form method="post">
+							<h2>Add Ad Spaces</h2>
+							<table align="center" class="table">
+								<tr>
+									<th>Description</th>
+									<td><input type="text" name="description" ></td>
+								</tr>
+								<tr>
+									<th>Amount</th>
+									<td><input type="text" name="amount"></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center"><input type="submit" name="adspace" value="   Add   " class="btn btn-success"></td>
+								</tr>
+							</table>
+						</form>
+						{%endif%}
+						<h2>Ad Spaces Available</h2>
+						<table align="center" class="table">
+							<tr>
+								<th>Sl.No</th>
+								<th>Description</th>
+								<th>Amount</th>
+								<th>Status</th>
+							</tr>
+							{%for row in  data['adspace']%}
+							<tr>
+								<td>{{loop.index}}</td>
+								<td>{{row['description']}}</td>
+								<td>{{row['amount']}}</td>
+								<td>{{row['status']}}</td>
+								<td><a class="btn btn-primary" href="?action=update&id={{row['ad_space_id']}}">Manage Cost</a></td>
+								<td><a class="btn btn-primary" href="media_view_customer_requests?action=update&id={{row['ad_space_id']}}">Customer Requests</a></td> 
+								
+							</tr>
+							{%endfor%}
+						</table>
+					</center>
+				</div>
+			</main>
+		</div>
+	</div>
+{%include 'media_footer.html'%}
